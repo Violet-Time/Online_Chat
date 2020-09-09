@@ -8,25 +8,25 @@ import java.time.LocalDateTime;
 
 public class Message {
 
-    private String name;
+    private String sender;
+    private String recipient;
     private String message;
-    private LocalDateTime time;
 
-    public Message(String name, String message) {
-        this.name = name;
+    public Message(String sender,String recipient, String message) {
+        this.sender = sender;
+        this.recipient = recipient;
         this.message = message;
-        this.time = LocalDateTime.now();
     }
 
-    public String getName() {
-        return name;
+    public String getSender() {
+        return sender;
+    }
+
+    public String getRecipient() {
+        return recipient;
     }
 
     public String getMessage() {
         return message;
-    }
-
-    public LocalDateTime getTime() {
-        return time;
     }
 }
