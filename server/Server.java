@@ -28,13 +28,13 @@ public class Server {
         try (ServerSocket server = new ServerSocket(PORT, 50, InetAddress.getByName(ADDRESS))) {
             server.setSoTimeout(1000);
             System.out.println("Server started!");
-            //Socket socket = null;
             while (true) {
                 try {
                     try {
                         new Thread(new Session(server.accept(), chat)).start();
                     } catch (SocketTimeoutException e) {
                         if (chat.getCountSessions() < 1) {
+                            chat.close();
                             server.close();
                             break;
                         }
