@@ -8,25 +8,46 @@ import java.time.LocalDateTime;
 
 public class Message {
 
-    private String name;
+    private User sender;
+    private User recipient;
     private String message;
-    private LocalDateTime time;
+    private byte isRead;
+    private boolean isNew = false;
 
-    public Message(String name, String message) {
-        this.name = name;
-        this.message = message;
-        this.time = LocalDateTime.now();
+    public Message(User sender, User recipient, String message) {
+        this(sender, recipient, message, (byte) 0, false);
     }
 
-    public String getName() {
-        return name;
+    public Message(User sender, User recipient, String message, byte isRead, boolean isNew) {
+        this.sender = sender;
+        this.recipient = recipient;
+        this.message = message;
+        this.isRead = isRead;
+        this.isNew = isNew;
+    }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public User getRecipient() {
+        return recipient;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public byte getIsRead() {
+        return isRead;
+    }
+
+    public void setIsRead(byte isRead) {
+        this.isRead = isRead;
+    }
+
+    @Override
+    public String toString() {
+        return (isNew ? "(new) " : "") + sender.getLogin() + ": "+ message;
     }
 }
